@@ -1,0 +1,15 @@
+.card
+{
+    margin-top: 16px ;
+    margin-left: 5px ;
+    margin-right: 5px ;
+}
+
+.cardExtra{
+    margin-right: 5px;
+}
+
+.modal
+{ 
+    max-height: 80% !important ; 
+}

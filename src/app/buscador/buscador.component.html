@@ -1,0 +1,148 @@
+<div class="row">
+    <nav>
+        <div class="nav-wrapper indigo darken-1">
+            <a href="#" class="brand-logo">ASIVA PROTOTIPO</a>
+
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li>
+                    <a href="/perfil">Perfil</a>
+                </li>
+                <li>
+                    <a href="/consultas" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Revisa las consultas realizadas a otras empresas">Consultas</a>
+                </li>
+                <li>
+                    <a href="/buscador" class=" tooltipped" data-position="bottom" data-delay="50" data-tooltip="Busca la informacion de empresas ingresadas en la plataforma">Buscador</a>
+                </li>
+                <li>
+                    <a href="" (click)="cerrarSesion()">Salir</a>
+                </li>
+            </ul>
+
+
+        </div>
+
+    </nav>
+
+    <div class="input-field col s6">
+        <input type="search" [(ngModel)]="searchText" id="autocomplete-input" class="autocomplete" placeholder="Ingrese Giro o Area de Giro a buscar"
+        />
+
+    </div>
+
+    <div class="input-field col s6">
+        <input type="search" [(ngModel)]="searchText2" id="autocomplete-input-2" class="autocomplete2" placeholder="Ingrese Producto o Servicio a buscar"
+        />
+    </div>
+
+    <div class="col s12">
+        <table class="highlight">
+            <thead>
+                <tr>
+                    <th>Area</th>
+                    <th>Giro</th>
+                    <th>Empresa</th>
+                    <th>Informacion</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let e of dataVista | async |  buscadorFilter: searchText | paginate: {itemsPerPage:7, currentPage: p}">
+                    <td>{{e.nombre_area_giro}}</td>
+                    <td>{{e.nombre_giro}}</td>
+                    <td>{{e.nombre_empresa}}</td>
+                    <td>
+                        <!--<button class="edit_data btn orange modal-trigger" id="{{e.id_empresa}}" data-toggle="modal" data-target="modal1">Contacto</button> -->
+                        <button class="btn-floating btn-medium waves-effect waves-light red modal-trigger " (click)="setEmpresaModal(e)" data-toggle="modal"
+                            data-target="modal1">
+                            <i class="material-icons">menu</i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="row center-align">
+            <pagination-controls (pageChange)="p=$event"></pagination-controls>
+        </div>
+    </div>
+</div>
+<footer class="page-footer teal darken-2">
+    <div class="container">
+        <div class="row">
+            <div class="col l6 s12">
+                <h5 class="white-text">Footer Content</h5>
+                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+            </div>
+            <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Links</h5>
+                <ul>
+                    <li>
+                        <a class="grey-text text-lighten-3" href="#!">Link 1</a>
+                    </li>
+                    <li>
+                        <a class="grey-text text-lighten-3" href="#!">Link 2</a>
+                    </li>
+                    <li>
+                        <a class="grey-text text-lighten-3" href="#!">Link 3</a>
+                    </li>
+                    <li>
+                        <a class="grey-text text-lighten-3" href="#!">Link 4</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            © 2017 Asiva
+            <a class="grey-text text-lighten-4 right" href="/perfil">Volver</a>
+        </div>
+    </div>
+</footer>
+
+
+
+
+
+<!-- Modal Structure ORIGINAL -->
+
+<div id="modal1" class="modal">
+    <div class="modal-content">
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre Empresa</th>
+                    <th>Direccion Empresa</th>
+                    <th>Fono Empresa</th>
+                    <th>Mail Empresa</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>{{EmpresaModal.nombre_empresa}}</td>
+                    <td>{{EmpresaModal.direccion_empresa}}</td>
+                    <td>{{EmpresaModal.fono_empresa}}</td>
+                    <td>{{EmpresaModal.mail_empresa}}</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <div class="modal-footer">
+
+        <div class="switch" id="switch1">
+
+            <label class="left-align">¿Se ha concretado contacto con esta empresa?</label>
+            <label>
+                No
+                <input type="checkbox" (change)="onCheckBox($event.target)">
+                <span class="lever"></span>
+                Si
+            </label>
+
+
+            <a id="changeCheckBox" class="modal-action modal-close waves-effect waves-green btn-flat tooltipped" data-position="bottom"
+                data-delay="50" data-tooltip="Actualiza la informacion si se concreto el contacto con una empresa. Esta informacion solo se registra una vez al dia y puede ser actualizada cuantas veces sea necesario"
+                (click)="addConsulta(EmpresaModal)">Registrar Contacto</a>
+        </div>
+    </div>
+</div>

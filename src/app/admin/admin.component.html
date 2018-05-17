@@ -1,0 +1,361 @@
+<nav>
+  <div class="nav-wrapper indigo darken-4">
+    <a href="#" class="brand-logo">ASIVA PROTOTIPO ADMIN</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li>
+        <a href="" (click)="cerrarSesion()">Salir</a>
+      </li>
+    </ul>
+
+  </div>
+</nav>
+<div class="row ">
+  <div class="col s12">
+    <ul class="tabs ">
+      <li class="tab col s2 tooltipped" data-position="bottom" data-delay="50" data-tooltip="Accede a la informacion de las empresas">
+        <a href="#test1">Empresas</a>
+      </li>
+      <li class="tab col s2 tooltipped" data-position="bottom" data-delay="50" data-tooltip="Accede a la informacion de los giros">
+        <a href="#test2">Giros</a>
+      </li>
+      <li class="tab col s3 tooltipped" data-position="bottom" data-delay="50" data-tooltip="Accede a la informacion de las areas de giro">
+        <a href="#test3">Areas Giros</a>
+      </li>
+      <li class="tab col s4 tooltipped" data-position="bottom" data-delay="50" data-tooltip="Accede a los indicadores">
+        <a href="#test4">Indicadores</a>
+      </li>
+    </ul>
+  </div>
+  <div id="test1" class="col s12">
+
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID Empresa</th>
+          <th>Nombre Empresa</th>
+          <th>Direccion Empresa</th>
+          <th>Fono Empresa</th>
+          <th>Mail Empresa</th>
+          <!-- <th>Editar</th> -->
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let e of empresaData | async">
+          <td>{{e.id_empresa}}</td>
+          <td>{{e.nombre_empresa}}</td>
+          <td>{{e.direccion_empresa}}</td>
+          <td>{{e.fono_empresa}}</td>
+          <td>{{e.mail_empresa}}</td>
+          <!-- <td>
+            <button class="btn-floating btn-medium waves-effect waves-light red modal-trigger" (click)="setEmpresaModal(e)" data-toggle="modal"
+              data-target="modal1">
+              <i class="material-icons">menu</i>
+            </button>
+          </td> -->
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+  <div id="test2" class="col s12">
+
+    <div class="col-md-6">
+      <input type="search" [(ngModel)]="searchText2" id="autocomplete-input" class="autocomplete" placeholder="  Ingrese Giro a buscar"
+      />
+      <label class="label-icon" for="search">
+        <i class="material-icons">search</i>
+      </label>
+
+    </div>
+    <table class="highlight centered">
+      <thead>
+        <tr>
+          <th>ID Giro</th>
+          <th>Nombre Giro</th>
+          <th>ID Area Giro</th>
+          <th>Editar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let e of giroData | async | buscadorFilter2: searchText2 | paginate: {itemsPerPage:7, currentPage: p}">
+          <td>{{e.id_giro}}</td>
+          <td>{{e.nombre_giro}}</td>
+          <td>{{e.area_giro_id_area_giro}}</td>
+          <td>
+            <button class="btn-floating btn-medium waves-effect waves-light red modal-trigger" (click)="setEmpresaModal(e)" data-toggle="modal"
+              data-target="modal1">
+              <i class="material-icons">menu</i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <pagination-controls (pageChange)="p=$event"></pagination-controls>
+  </div>
+  <div id="test3" class="col s12">
+    <table class="highlight centered">
+      <thead>
+        <tr>
+          <th>ID Area Giro</th>
+          <th>Nombre Area Giro</th>
+          <th>Editar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let e of areaGiroData | async">
+          <td>{{e.id_area_giro}}</td>
+          <td>{{e.nombre_area_giro}}</td>
+          <td>
+            <button class="btn-floating btn-medium waves-effect waves-light red modal-trigger" (click)="setEmpresaModal(e)" data-toggle="modal"
+              data-target="modal2">
+              <i class="material-icons">menu</i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+  <div id="test4" class="col s12 ">
+
+    <!--TABS ADMIN-->
+    <div class="col s12">
+      <ul class="tabs">
+        <li class="tab col s4 tooltipped" data-position="bottom" data-delay="50" data-tooltip="Ver cuales empresas han usado mas la plataforma">
+          <a href="#test5">USO DE PLATAFORMA</a>
+        </li>
+        <li class="tab col s4 tooltipped" data-position="bottom" data-delay="50" data-tooltip="Ver cuales empresas han sido mas consultadas">
+          <a href="#test6">MAS CONSULTADAS</a>
+        </li>
+        <li class="tab col s4 tooltipped" data-position="bottom" data-delay="50" data-tooltip="Ver cuales empresas han concretado mas contactos">
+          <a href="#test7">MAS CONCRETADAS</a>
+        </li>
+
+      </ul>
+    </div>
+
+    <!--TABS ADMIN-->
+
+    <div id="test5" class="col s12">
+
+      <div class="col s8">
+        <p class="center-align">Empresas que mas han usado la plataforma</p>
+        <div [hidden]="!chart">
+          <canvas id="canvasUso">{{ chart }}</canvas>
+        </div>
+      </div>
+      <div class="col s4">
+        <table class="highlight centered">
+          <thead>
+            <tr>
+              <th>Cantidad de consultas</th>
+              <th>Empresa consultora</th>
+              <th>INFO</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let e of dataVistaMasUsoAdmin">
+              <td>{{e.total}}</td>
+              <td>{{e.nombre_empresa}}</td>
+              <td>
+                  <button class="btn-floating btn-medium waves-effect waves-light red modal-trigger pulse " (click)="setDetalleConsultaHecha(e)" data-toggle="modal"
+                  data-target="modal4">
+                  <i class="material-icons">menu</i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+
+    </div>
+
+    <div id="test6" class="col s12">
+
+        <div class="col s6">
+            <p class="center-align">Empresas que mas han sido consultadas en la plataforma</p>
+            <div [hidden]="!chart">
+              <canvas id="canvasConsulta">{{ chart }}</canvas>
+            </div>
+          </div>
+          <div class="col s6">
+            <table class="highlight centered">
+              <thead>
+                <tr>
+                  <th>Cantidad de consultas</th>
+                  <th>Empresa consultada</th>
+                  <th>INFO</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let f of dataVistaMasConsultadasAdmin">
+                  <td>{{f.total}}</td>
+                  <td>{{f.nombre_empresa}}</td>
+                  <td>
+                      <button class="btn-floating btn-medium waves-effect waves-light red modal-trigger pulse " (click)="setDetalleMasConsultadas(f)" data-toggle="modal"
+                      data-target="modal4">
+                      <i class="material-icons">menu</i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+
+    </div>
+
+    <div id="test7" class="col s12">
+
+        <div class="col s6">
+            <p class="center-align">Empresas que mas han concretado contactos en la plataforma</p>
+            <div [hidden]="!chart">
+              <canvas id="canvasConcretado">{{ chart }}</canvas>
+            </div>
+          </div>
+          <div class="col s6">
+            <table class="highlight centered">
+              <thead>
+                <tr>
+                  <th>Cantidad de consultas</th>
+                  <th>Empresa consultora</th>
+                  <th>INFO</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let e of dataVistaHanConcretadoAdmin">
+                  <td>{{e.total}}</td>
+                  <td>{{e.nombre_empresa}}</td>
+                  <td>
+                      <button class="btn-floating btn-medium waves-effect waves-light red modal-trigger pulse " (click)="setDetalleMasConcretado(e)" data-toggle="modal"
+                      data-target="modal4">
+                      <i class="material-icons">menu</i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+    </div>
+
+
+  </div>
+
+
+</div>
+
+
+<!-- Giro Modal Structure -->
+<div id="modal1" class="modal">
+  <div class="modal-content">
+    <form class="col s4" [formGroup]="myFormGiro" novalidate (ngSubmit)="save(myFormGiro.value, myFormGiro.valid)">
+
+
+      <div>
+        <i class="small material-icons">account_circle</i>
+        <label>Nombre Giro</label>
+        <input type="text" formControlName="nombre_giro">
+        <small [hidden]="myFormGiro.controls.nombre_giro.valid || (myFormGiro.controls.nombre_giro.pristine && !submitted)">
+          El nombre del giro es requerido.
+        </small>
+      </div>
+
+      <div>
+        <i class="small material-icons">mode_edit</i>
+        <label>ID Area Giro</label>
+        <input type="text" formControlName="area_giro_id_area_giro">
+        <small [hidden]="myFormGiro.controls.area_giro_id_area_giro.valid || (myFormGiro.controls.area_giro_id_area_giro.pristine && !submitted)">
+          La ID del area del giro es requerida.
+        </small>
+      </div>
+
+
+      <button class="modal-action modal-close waves-effect waves-green btn-flat" type="submit" [disabled]="!myFormGiro.valid">Actualizar Datos</button>
+
+    </form>
+
+
+  </div>
+
+</div>
+
+<!-- Area Giro Modal Structure -->
+<div id="modal2" class="modal">
+  <div class="modal-content">
+    <form class="col s4" [formGroup]="myFormAreaGiro" novalidate (ngSubmit)="save(myFormAreaGiro.value, myFormAreaGiro.valid)">
+
+
+      <div>
+        <i class="small material-icons">account_circle</i>
+        <label>Nombre Area Giro</label>
+        <input type="text" formControlName="nombre_area_giro">
+        <small [hidden]="myFormAreaGiro.controls.nombre_area_giro.valid || (myFormAreaGiro.controls.nombre_area_giro.pristine && !submitted)">
+          El nombre del giro es requerido.
+        </small>
+      </div>
+
+      <div>
+        <i class="small material-icons">mode_edit</i>
+        <label>ID Area Giro</label>
+        <input type="text" formControlName="id_area_giro">
+        <small [hidden]="myFormAreaGiro.controls.id_area_giro.valid || (myFormAreaGiro.controls.id_area_giro.pristine && !submitted)">
+          La ID del area del giro es requerida.
+        </small>
+      </div>
+
+
+      <button class="modal-action modal-close waves-effect waves-green btn-flat" type="submit" [disabled]="!myFormAreaGiro.valid">Actualizar Datos</button>
+
+    </form>
+
+
+  </div>
+
+</div>
+
+<!-- Graph Modal Structure -->
+<div id="modal4" class="modal white">
+    <div class="modal-content black-text">
+      <div class="row">
+        <div class="col s8">
+            <p class="center-align">{{modalDetalle.nombre_empresa}} </p>
+            <p class="center-align">{{modalDetalle.titulo}} </p>
+
+        
+          <!--  <div [hidden]="!chart">
+              <canvas id={{modalDetalle.nombre_empresa}}>{{ modalDetalle.chart }}</canvas>
+            </div> -->
+
+            <!--TEST-->
+            <div [hidden]="!chart" id="pieChartContent">
+              <canvas id="pieChart" width="300" height="300"></canvas>
+          </div>
+
+            <!--TEST-->
+          </div>
+          <div class="col s4">
+            <table class="highlight centered">
+              <thead>
+                <tr>
+                  <th>Cantidad</th>
+                  <th>Empresa</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let e of dataVistaMasHanConsultado">
+                  <td>{{e.total}}</td>
+                  <td>{{e.nombre_empresa}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+
+    </div>
+  </div>

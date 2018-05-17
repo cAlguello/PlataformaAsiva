@@ -1,0 +1,46 @@
+<div class="row">
+    <form class="col s4" [formGroup]="myForm" novalidate (ngSubmit)="save(myForm.value, myForm.valid)">
+
+
+        <div>
+          <i class="small material-icons">account_circle</i>
+            <label>Nombre</label>
+            <input type="text" formControlName="nombre_empresa">
+            <small [hidden]="myForm.controls.nombre_empresa.valid || (myForm.controls.nombre_empresa.pristine && !submitted)">
+                El nombre de la empresa es requerido.
+            </small>
+        </div>
+
+        <div>
+          <i class="small material-icons">mode_edit</i>
+            <label>Direccion</label>
+            <input type="text" formControlName="direccion_empresa">
+            <small [hidden]="myForm.controls.direccion_empresa.valid || (myForm.controls.direccion_empresa.pristine && !submitted)">
+                La direccion de la empresa es requerida.
+            </small>
+        </div>
+
+
+        <div>
+          <i class="small material-icons">phone</i>
+            <label>Fono</label>
+            <input type="text" formControlName="fono_empresa">
+            <small [hidden]="myForm.controls.fono_empresa.valid || (myForm.controls.fono_empresa.pristine && !submitted)">
+                El fono de la empresa es requerido.
+            </small>
+        </div>
+
+
+        <div>
+          <i class="small material-icons">email</i>
+            <label>Mail</label>
+            <input type="text" formControlName="mail_empresa">
+            <small [hidden]="myForm.controls.mail_empresa.valid || (myForm.controls.mail_empresa.pristine && !submitted)">
+                El mail de la empresa es requerido.
+            </small>
+        </div>
+
+        <button type="submit">Submit</button>
+
+    </form>
+</div>

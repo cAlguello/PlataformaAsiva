@@ -1,0 +1,64 @@
+<nav>
+  <div class="nav-wrapper  indigo darken-1">
+    <a href="#" class="brand-logo">ASIVA PROTOTIPO</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li>
+        <a href="/perfil">Perfil</a>
+      </li>
+      <li>
+        <a href="/consultas" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Revisa las consultas realizadas a otras empresas">Consultas</a>
+      </li>
+      <li>
+        <a href="/buscador" class=" tooltipped" data-position="bottom" data-delay="50" data-tooltip="Busca la informacion de empresas ingresadas en la plataforma">Buscador</a>
+      </li>
+      <li>
+        <a href="" (click)="cerrarSesion()">Salir</a>
+      </li>
+    </ul>
+
+  </div>
+</nav>
+<div class="row">
+  <div class="input-field col s10 offset-s1">
+    <input type="search" [(ngModel)]="searchText4" id="autocomplete-input" class="autocomplete" placeholder="Ingrese Producto/Servicio a buscar"
+    />
+
+  </div>
+  <table class="highlight centered">
+    <thead>
+      <tr>
+        <th>Seleccionar</th>
+        <th>Producto/Servicio</th>
+        <th>Rubro 1</th>
+        <th>Rubro 2</th>
+        <th>Rubro 3</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let e of dataProductosEmpresa  | async | productoFilter:searchText4 | paginate: {itemsPerPage:12, currentPage: p}  ">
+        <td>
+
+        </td>
+        <td>{{e.nombre_producto}}</td>
+        <td>{{e.rubro1}}</td>
+        <td>{{e.rubro2}}</td>
+        <td>{{e.rubro3}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="row">
+    <div class="col s12 center-align">
+    <pagination-controls (pageChange)="p=$event"></pagination-controls>
+  </div>
+  <div class="row">
+    <div class="col">
+        <a (click)="irProducto()" class="waves-effect waves-light black btn">Agregar Seleccionados</a>
+    </div>
+    <div class="col">
+        <a (click)="irProducto()" class="waves-effect waves-light black btn">Borrar Seleccionados</a>
+    </div>
+  </div>
+  </div>
+
+</div>

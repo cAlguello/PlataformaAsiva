@@ -1,0 +1,433 @@
+<nav>
+  <div class="nav-wrapper  indigo darken-1">
+    <a href="#" class="brand-logo">ASIVA PROTOTIPO</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li>
+            <a href="/perfil">Perfil</a>
+        </li>
+        <li>
+            <a href="/consultas" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Revisa las consultas realizadas a otras empresas">Consultas</a>
+        </li>
+        <li>
+            <a href="/buscador" class=" tooltipped" data-position="bottom" data-delay="50" data-tooltip="Busca la informacion de empresas ingresadas en la plataforma">Buscador</a>
+        </li>
+        <li>
+            <a href="" (click)="cerrarSesion()">Salir</a>
+        </li>
+    </ul>
+
+  </div>
+</nav>
+<!--
+  <form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm.value, myForm.valid)">
+
+
+    <div>
+        <label>Nombre</label>
+        <input type="text" formControlName="nombre_empresa">
+        <small [hidden]="myForm.controls.nombre_empresa.valid || (myForm.controls.nombre_empresa.pristine && !submitted)">
+            El nombre de la empresa es requerido.
+        </small>
+    </div>
+
+    <div>
+        <label>Direccion</label>
+        <input type="text" formControlName="direccion_empresa">
+        <small [hidden]="myForm.controls.direccion_empresa.valid || (myForm.controls.direccion_empresa.pristine && !submitted)">
+            La direccion de la empresa es requerida.
+        </small>
+    </div>
+
+
+    <div>
+        <label>Fono</label>
+        <input type="text" formControlName="fono_empresa">
+        <small [hidden]="myForm.controls.fono_empresa.valid || (myForm.controls.fono_empresa.pristine && !submitted)">
+            El fono de la empresa es requerido.
+        </small>
+    </div>
+
+
+    <div>
+        <label>Mail</label>
+        <input type="text" formControlName="mail_empresa">
+        <small [hidden]="myForm.controls.mail_empresa.valid || (myForm.controls.mail_empresa.pristine && !submitted)">
+            El mail de la empresa es requerido.
+        </small>
+    </div>
+
+    <button type="submit">Submit</button>
+
+</form>
+-->
+
+<div class="row ">
+  <div class="col s10 card offset-s1">
+    <div class="card-action indigo darken-1 white-text center-align">
+      <h6>Datos Generales de Empresa</h6>
+    </div>
+    <div class="card-content">
+      <div class="col s4">
+        <i class="small material-icons">account_circle</i>
+        <label>Nombre</label>
+        <div>
+          <p class="header h2">{{data_nombre_empresa}}</p>
+        </div>
+      </div>
+      <div class="col s4">
+        <i class="small material-icons">mode_edit</i>
+        <label>Direccion</label>
+        <div>
+          <p class="header h2">{{data_direccion_empresa}}</p>
+        </div>
+      </div>
+      <div class="col s4">
+        <i class="small material-icons">mode_edit</i>
+        <label>NUEVO CAMPO PLACEHOLDER</label>
+        <div>
+          <p class="header h2 grey-text">PLACEHOLDER</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s4">
+          <i class="small material-icons">phone</i>
+          <label>Fono</label>
+          <div>
+            <p class="header h2">{{data_fono_empresa}}</p>
+          </div>
+        </div>
+
+        <div class="col s4">
+          <i class="small material-icons">email</i>
+          <label>Mail</label>
+          <div>
+            <p class="header h2">{{data_mail_empresa}}</p>
+          </div>
+        </div>
+        <div class="col s4">
+          <i class="small material-icons">mode_edit</i>
+          <label>NUEVO CAMPO PLACEHOLDER</label>
+          <div>
+            <p class="header h2 grey-text">PLACEHOLDER</p>
+          </div>
+        </div>
+      </div>
+      <div class="card-action">
+
+        <a class="waves-effect waves-light black btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Cambia la informacion de tu empresa"
+          data-toggle="modal" data-target="modal1">Editar Informacion</a>
+      </div>
+      <!--<button type="submit">Submit</button>-->
+    </div>
+
+  </div>
+
+
+  <div class="row">
+    <div class="col s5 card push-s1">
+      <div class="card-action indigo darken-1 white-text center-align">
+        <h6>Giros de la Empresa</h6>
+      </div>
+      <div class="card-content">
+        <table class="highlight">
+          <thead>
+            <tr>
+              <th>Giros</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let e of girosUnicos ">
+              <td>{{e.nombre_giro}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card-action">
+
+
+        <a class="waves-effect waves-light black btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Remueve giros de tu empresa. Esto se vera reflejado de manera inmediata en el buscador"
+          data-toggle="modal" data-target="modal2">Editar Giros</a>
+
+        <a class="waves-effect waves-light black btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Agrega giros nuevos a tu empresa. Esto se vera reflejado de manera inmediata en el buscador"
+          data-toggle="modal" data-target="modal3">Agregar Giros</a>
+
+
+      </div>
+
+
+
+    </div>
+    <div class="cardExtra">
+      <div class="col s5 card push-s1">
+        <div class="card-action indigo darken-1 white-text center-align">
+          <h6>Productos y Servicios de la Empresa</h6>
+        </div>
+        <div class="card-content">
+          <table class="highlight">
+            <thead>
+              <tr>
+                <th>Productos/Servicios</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr *ngFor="let e of dataProductosEmpresa ">
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          
+        </div>
+        <div class="card-action">
+            <a (click)="irProducto()" class="waves-effect waves-light black btn">Editar Productos/Servicios</a>
+          </div>
+      </div>
+
+
+      <!-- Perfil Modal Structure -->
+      <div id="modal1" class="modal">
+        <div class="modal-content">
+          <form class="col s4" [formGroup]="myForm" novalidate (ngSubmit)="save(myForm.value, myForm.valid)">
+
+
+            <div>
+              <i class="small material-icons">account_circle</i>
+              <label>Nombre</label>
+              <input type="text" formControlName="nombre_empresa">
+              <small [hidden]="myForm.controls.nombre_empresa.valid || (myForm.controls.nombre_empresa.pristine && !submitted)">
+                El nombre de la empresa es requerido.
+              </small>
+            </div>
+
+            <div>
+              <i class="small material-icons">mode_edit</i>
+              <label>Direccion</label>
+              <input type="text" formControlName="direccion_empresa">
+              <small [hidden]="myForm.controls.direccion_empresa.valid || (myForm.controls.direccion_empresa.pristine && !submitted)">
+                La direccion de la empresa es requerida.
+              </small>
+            </div>
+
+
+            <div>
+              <i class="small material-icons">phone</i>
+              <label>Fono</label>
+              <input type="text" formControlName="fono_empresa">
+              <small [hidden]="myForm.controls.fono_empresa.valid || (myForm.controls.fono_empresa.pristine && !submitted)">
+                El fono de la empresa es requerido.
+              </small>
+            </div>
+
+
+            <div>
+              <i class="small material-icons">email</i>
+              <label>Mail</label>
+              <input type="text" formControlName="mail_empresa">
+              <small [hidden]="myForm.controls.mail_empresa.valid || (myForm.controls.mail_empresa.pristine && !submitted)">
+                El mail de la empresa es requerido.
+              </small>
+            </div>
+            <button class="modal-action modal-close waves-effect waves-green btn-flat" type="submit" [disabled]="!myForm.valid">Actualizar Datos</button>
+
+          </form>
+
+
+        </div>
+
+      </div>
+
+      <!-- Giro Modal Structure -->
+      <div id="modal2" class="modal">
+        <div class="modal-content">
+          <table>
+            <thead>
+              <tr>
+                <th>Giros</th>
+                <th>Remover</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr *ngFor="let e of girosUnicos ">
+                <td>{{e.nombre_giro}}</td>
+
+
+                <td>
+                  <button class="btn-floating btn-medium waves-effect waves-light red" (click)="removeGiro(e)">
+                    <i class="material-icons">menu</i>
+                  </button>
+                </td>
+
+
+              </tr>
+
+
+            </tbody>
+          </table>
+        </div>
+        <!--<div class="modal-footer">
+    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Aceptar</a>
+  </div> -->
+      </div>
+
+      <!-- Giro Modal Agrega Giros  Structure -->
+      <div id="modal3" class="modal">
+        <div class="modal-content">
+          <div class="col-md-6">
+            <input type="search" [(ngModel)]="searchText2" id="autocomplete-input" class="autocomplete" placeholder="  Ingrese Giro a buscar"
+            />
+            <label class="label-icon" for="search">
+              <i class="material-icons">search</i>
+            </label>
+
+          </div>
+          <table class="highlight centered">
+            <thead>
+              <tr>
+                <th>Nombre Giro</th>
+                <th>Agregar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let e of giroData | async | buscadorFilter2: searchText2 | paginate: {itemsPerPage:5, currentPage: p}">
+
+                <td>{{e.nombre_giro}}</td>
+                <td>
+                  <button class="btn-floating btn-medium waves-effect waves-light red" (click)="addGiro(e)">
+                    <i class="material-icons">menu</i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <pagination-controls (pageChange)="p=$event"></pagination-controls>
+        </div>
+
+      </div>
+
+      <!-- Negocio Modal Structure -->
+      <div id="modal6" class="modal">
+        <div class="modal-content">
+
+          <div class="col m4">
+            <p class="center-align">Empresas que han concretado contactos</p>
+
+            <div class="row">
+              <table class="highlight centered">
+                <thead>
+                  <tr>
+                    <th>Fecha</th>
+                    <th>Empresa</th>
+                    <th></th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let e of dataVistaHanConcretado">
+
+                    <td>{{e.fecha_consulta}}</td>
+                    <td>{{e.nombre_empresa}}</td>
+                    <td>
+                      <!--<button class="edit_data btn orange modal-trigger" id="{{e.id_empresa}}" data-toggle="modal" data-target="modal1">Contacto</button> -->
+                      <a class="waves-effect waves-light indigo darken-1 btn " (click)="setNegocio(e)">Registrar</a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+
+
+
+
+      <!-- Negocio Concretado Modal Structure -->
+      <div id="modal7" class="modal">
+        <div class="modal-content">
+          <div class="row">
+            <p class="center-align">Empresas con las que mas he concretado negocios</p>
+            <div id="pieChartContent2">
+              <canvas id="pieChart2"></canvas>
+            </div>
+            <div class="row">
+              <table class="highlight centered">
+                <thead>
+                  <tr>
+                    <th>Cantidad</th>
+                    <th>Empresa</th>
+                    <th>Fono</th>
+                    <th>Mail</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let e of dataNegocioConcretado">
+                    <td>{{e.total}}</td>
+                    <td>{{e.nombre_empresa}}</td>
+                    <td>{{e.fono_empresa}}</td>
+                    <td>{{e.mail_empresa}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+      <!--CHILECOMPRA
+
+      <div class="input-field">
+        <input id="rut" type="text" class="validate" [(ngModel)]="localRut.rut">
+        <label for="rut">Rut Empresa</label>
+      </div>
+
+      <a (click)="informacionOrdenDeCompra()" class="btn waves-effect waves-light col s12">Obtener datos de Mercado Publico</a>
+      <div>
+        <i class="small material-icons">account_circle</i>
+        <label>ID EMPRESA MERCADO PUBLICO</label>
+        <div>
+          <p class="header h2">{{this.localRut.id_chilecompra}}</p>
+        </div>
+      </div>
+      <table class="highlight">
+        <thead>
+          <tr>
+            <th>Ordenes de Compra</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let d of ordenesDeCompraEmpresa ">
+            <td>{{d}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table class="highlight">
+        <thead>
+          <tr>
+            <th>Productos/Servicios</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let e of productoServicioEmpresa ">
+            <td>{{e}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="row">
+        <div class="col s12">
+         
+
+        </div>
+
+      </div>
+    </div> -->
