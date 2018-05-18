@@ -2,17 +2,18 @@
   <div class="nav-wrapper  indigo darken-1">
     <a href="#" class="brand-logo">ASIVA PROTOTIPO</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li>
-            <a (click)="irPerfil()">Perfil</a>
-        </li>
-        <li>
-            <a (click)="irConsultas()">Consultas</a> </li>
-        <li>
-            <a (click)="irBuscador()" class=" tooltipped" data-position="bottom" data-delay="50" data-tooltip="Busca la informacion de empresas ingresadas en la plataforma">Buscador</a>
-        </li>
-        <li>
-            <a href="" (click)="cerrarSesion()">Salir</a>
-        </li>
+      <li>
+        <a routerLink="/perfil">Perfil</a>
+      </li>
+      <li>
+        <a routerLink="/consultas">Consultas</a>
+      </li>
+      <li>
+        <a routerLink="/buscador">Buscador</a>
+      </li>
+      <li>
+        <a href="" (click)="cerrarSesion()">Salir</a>
+      </li>
     </ul>
 
   </div>
@@ -176,11 +177,11 @@
               </tr>
             </tbody>
           </table>
-          
+
         </div>
         <div class="card-action">
-            <a (click)="irProducto()" class="waves-effect waves-light black btn">Editar Productos/Servicios</a>
-          </div>
+          <a (click)="irProducto()" class="waves-effect waves-light black btn">Editar Productos/Servicios</a>
+        </div>
       </div>
 
 
