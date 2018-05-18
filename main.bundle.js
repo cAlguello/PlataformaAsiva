@@ -1576,7 +1576,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".card\r\n{\r\n    margin-top: 16px ;\r\n    margin-left: 5px ;\r\n    margin-right: 5px ;\r\n}\r\n\r\n.cardExtra{\r\n    margin-right: 5px;\r\n}\r\n\r\n.modal\r\n{ \r\n    max-height: 80% !important ; \r\n}", ""]);
+exports.push([module.i, ".card\r\n{\r\n    margin-top: 16px ;\r\n    margin-left: 5px ;\r\n    margin-right: 5px ;\r\n}\r\n\r\n.cardExtra{\r\n    margin-right: 5px;\r\n}\r\n\r\n", ""]);
 
 // exports
 
