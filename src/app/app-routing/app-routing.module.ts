@@ -13,7 +13,7 @@ const appRoutes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'perfil', component: PerfilComponent },
     { path: 'buscador', component: BuscadorComponent },
-    { path: 'admin', component: AdminComponent },
+  //  { path: 'admin', component: AdminComponent }, temporalmente deshabilitado
     { path: 'producto', component: ProductoComponent },
     { path: 'consultas', component: ConsultasComponent },
     { path: '**', component: LoginComponent }
