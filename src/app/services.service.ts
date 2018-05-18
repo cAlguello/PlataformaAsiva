@@ -118,24 +118,24 @@ export class ServicesService {
 
   //
   addUser(user): Observable<any> {
-    return this.httpClient.post("http://127.0.0.1:9000/authController", user, this.header);
+    return this.httpClient.post(this.host+"/authController", user, this.header);
   }
 
 
   addConsulta(consulta): Observable<any> {
-    return this.httpClient.post("http://127.0.0.1:9000/consultaController", consulta, this.header);
+    return this.httpClient.post(this.host+"/consultaController", consulta, this.header);
   }
 
   addOrUpdateEmpresa(empresa): Observable<any> {
-    return this.httpClient.post("http://127.0.0.1:9000/dataEmpresaController", empresa, this.header);
+    return this.httpClient.post(this.host+"/dataEmpresaController", empresa, this.header);
   }
 
   removeGiroEmpresa(giro): Observable<any> {
-    return this.httpClient.post("http://127.0.0.1:9000/girosUnicosEmpresa", giro, this.header);
+    return this.httpClient.post(this.host+"/girosUnicosEmpresa", giro, this.header);
   }
 
   addGiroEmpresa(giro): Observable<any> {
-    return this.httpClient.post("http://127.0.0.1:9000/giroController", giro, this.header);
+    return this.httpClient.post(this.host+"/giroController", giro, this.header);
   }
 
   //REVISAR NUEVOS
@@ -162,7 +162,7 @@ export class ServicesService {
 
 
   getServicios(): Observable<any> {
-    return this.http.get("http://127.0.0.1:9000/servicioController")
+    return this.http.get(this.host+"/servicioController")
       .map((res: Response) => res.json())
   }
 
@@ -172,29 +172,29 @@ export class ServicesService {
       .map((res: Response) => res.json())
   }
   getEmpresa(user): Observable<any> {
-    return this.http.get("http://127.0.0.1:9000/empresaController/" + user)
+    return this.http.get(this.host+"/empresaController/" + user)
       .map((res: Response) => res.json())
   }
 
   getAllEmpresas(): Observable<any> {
-    return this.http.get("http://127.0.0.1:9000/dataEmpresaController")
+    return this.http.get(this.host+"/dataEmpresaController")
       .map((res: Response) => res.json())
   }
   getGiros(): Observable<any> {
-    return this.http.get("http://127.0.0.1:9000/giroController")
+    return this.http.get(this.host+"/giroController")
       .map((res: Response) => res.json())
   }
   getAreaGiros(): Observable<any> {
-    return this.http.get("http://127.0.0.1:9000/areaGiroController")
+    return this.http.get(this.host+"/areaGiroController")
       .map((res: Response) => res.json())
   }
   getGirosEmpresas(): Observable<any> {
-    return this.http.get("http://127.0.0.1:9000/giroEmpresaController")
+    return this.http.get(this.host+"/giroEmpresaController")
       .map((res: Response) => res.json())
   }
 
   fetchData(): Observable<any> {
-    return this.http.get("http://127.0.0.1:9000/fetchData")
+    return this.http.get(this.host+"/fetchData")
       .map((res: Response) => res.json())
   }
   //
