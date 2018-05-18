@@ -3,13 +3,12 @@
     <a href="#" class="brand-logo">ASIVA PROTOTIPO</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li>
-            <a href="/perfil">Perfil</a>
+            <a (click)="irPerfil()">Perfil</a>
         </li>
         <li>
-            <a href="/consultas" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Revisa las consultas realizadas a otras empresas">Consultas</a>
-        </li>
+            <a (click)="irConsultas()">Consultas</a> </li>
         <li>
-            <a href="/buscador" class=" tooltipped" data-position="bottom" data-delay="50" data-tooltip="Busca la informacion de empresas ingresadas en la plataforma">Buscador</a>
+            <a (click)="irBuscador()" class=" tooltipped" data-position="bottom" data-delay="50" data-tooltip="Busca la informacion de empresas ingresadas en la plataforma">Buscador</a>
         </li>
         <li>
             <a href="" (click)="cerrarSesion()">Salir</a>

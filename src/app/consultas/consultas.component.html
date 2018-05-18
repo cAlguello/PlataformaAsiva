@@ -1,15 +1,18 @@
 <nav>
   <div class="nav-wrapper  indigo darken-1">
     <a href="#" class="brand-logo">ASIVA PROTOTIPO</a>
-    <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li>
-        <a href="perfil">Perfil</a>
-      </li>
-      <li>
-        <a href="buscador">Buscador</a>
-      </li>
-    </ul>
-
+    <li>
+        <a (click)="irPerfil()">Perfil</a>
+    </li>
+    <li>
+        <a  (click)="irConsultas()">Consultas</a>
+    </li>
+    <li>
+        <a  (click)="irBuscador()">Buscador</a>
+    </li>
+    <li>
+        <a href="" (click)="cerrarSesion()">Salir</a>
+    </li>
   </div>
 </nav>
 
