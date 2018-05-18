@@ -589,9 +589,7 @@ var AdminComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__perfil_perfil_component__ = __webpack_require__("../../../../../src/app/perfil/perfil.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__buscador_buscador_component__ = __webpack_require__("../../../../../src/app/buscador/buscador.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__consultas_consultas_component__ = __webpack_require__("../../../../../src/app/consultas/consultas.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__admin_admin_component__ = __webpack_require__("../../../../../src/app/admin/admin.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__producto_producto_component__ = __webpack_require__("../../../../../src/app/producto/producto.component.ts");
-
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__producto_producto_component__ = __webpack_require__("../../../../../src/app/producto/producto.component.ts");
 
 
 
@@ -603,8 +601,8 @@ var appRoutes = [
     { path: 'login', component: __WEBPACK_IMPORTED_MODULE_1__login_login_component__["a" /* LoginComponent */] },
     { path: 'perfil', component: __WEBPACK_IMPORTED_MODULE_2__perfil_perfil_component__["a" /* PerfilComponent */] },
     { path: 'buscador', component: __WEBPACK_IMPORTED_MODULE_3__buscador_buscador_component__["a" /* BuscadorComponent */] },
-    { path: 'admin', component: __WEBPACK_IMPORTED_MODULE_5__admin_admin_component__["a" /* AdminComponent */] },
-    { path: 'producto', component: __WEBPACK_IMPORTED_MODULE_6__producto_producto_component__["a" /* ProductoComponent */] },
+    //  { path: 'admin', component: AdminComponent }, temporalmente deshabilitado
+    { path: 'producto', component: __WEBPACK_IMPORTED_MODULE_5__producto_producto_component__["a" /* ProductoComponent */] },
     { path: 'consultas', component: __WEBPACK_IMPORTED_MODULE_4__consultas_consultas_component__["a" /* ConsultasComponent */] },
     { path: '**', component: __WEBPACK_IMPORTED_MODULE_1__login_login_component__["a" /* LoginComponent */] }
 ];
@@ -1488,7 +1486,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/login/login.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--Login Form-->\r\n\r\n<div class=\"row login\">\r\n\t<div class=\"col s12 l4 offset-l4\">\r\n\t\t<div class=\"card\">\r\n\t\t\t<div class=\"card-action green white-text center-align\">\r\n\t\t\t\t<h3>Plataforma ASIVA</h3>\r\n\t\t\t</div>\r\n\r\n\t\t\t<div class=\"card-content\">\r\n\t\t\t\t<div class=\"input-field\">\r\n\t\t\t\t\t<input id=\"user_name\" type=\"text\" class=\"validate\" [(ngModel)]=\"localUser.username\">\r\n\t\t\t\t\t<label for=\"user_name\">Usuario</label>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\"input-field\">\r\n\t\t\t\t\t<input id=\"password\" type=\"password\" class=\"validate\" [(ngModel)]=\"localUser.password\">\r\n\t\t\t\t\t<label for=\"password\">Contraseña</label>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t<div class=\"input-field col s12\">\r\n\t\t\t\t\t\t<a (click)=\"irPerfil()\" class=\"btn waves-effect waves-light col s12\">Acceder</a>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\" grey-text center-align\">REGISTRO DESACTIVADO TEMPORALMENTE</div>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n\r\n</div>\r\n\r\n<!-- <div class=\"center-div\">\r\n\t\t<div class=\"col s12 card-panel\">\r\n\r\n\t\t\t<div class=\"input-field\">\r\n\t\t\t\t<input id=\"user_name\" type=\"text\" class=\"validate\" [(ngModel)]=\"localUser.username\">\r\n\t\t\t\t<label for=\"user_name\">Usuario</label>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"input-field\">\r\n\t\t\t\t<input id=\"password\" type=\"password\" class=\"validate\" [(ngModel)]=\"localUser.password\">\r\n\t\t\t\t<label for=\"password\">Contraseña</label>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"row\">\r\n\t\t\t\t<div class=\"input-field col s12\">\r\n\t\t\t\t\t<a (click)=\"irPerfil()\" class=\"btn waves-effect waves-light col s12\">Acceder</a>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\r\n\r\n\t\t<a class=\"left-align\" href=\"#!\">Registrate</a>\r\n\r\n\r\n\t</div> -->"
+module.exports = "<!--Login Form-->\r\n\r\n<div class=\"row login\">\r\n\t<div class=\"col s12 l4 offset-l4\">\r\n\t\t<div class=\"card\">\r\n\t\t\t<div class=\"card-action  indigo darken-1 white-text center-align\">\r\n\t\t\t\t<h3>Plataforma ASIVA</h3>\r\n\t\t\t</div>\r\n\r\n\t\t\t<div class=\"card-content\">\r\n\t\t\t\t<div class=\"input-field\">\r\n\t\t\t\t\t<input id=\"user_name\" type=\"text\" class=\"validate\" [(ngModel)]=\"localUser.username\">\r\n\t\t\t\t\t<label for=\"user_name\">Usuario</label>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\"input-field\">\r\n\t\t\t\t\t<input id=\"password\" type=\"password\" class=\"validate\" [(ngModel)]=\"localUser.password\">\r\n\t\t\t\t\t<label for=\"password\">Contraseña</label>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t<div class=\"input-field col s12\">\r\n\t\t\t\t\t\t<a (click)=\"irPerfil()\" class=\"btn waves-effect waves-light col s12\">Acceder</a>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\" grey-text center-align\">REGISTRO DESACTIVADO TEMPORALMENTE</div>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n\r\n</div>\r\n\r\n<!-- <div class=\"center-div\">\r\n\t\t<div class=\"col s12 card-panel\">\r\n\r\n\t\t\t<div class=\"input-field\">\r\n\t\t\t\t<input id=\"user_name\" type=\"text\" class=\"validate\" [(ngModel)]=\"localUser.username\">\r\n\t\t\t\t<label for=\"user_name\">Usuario</label>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"input-field\">\r\n\t\t\t\t<input id=\"password\" type=\"password\" class=\"validate\" [(ngModel)]=\"localUser.password\">\r\n\t\t\t\t<label for=\"password\">Contraseña</label>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"row\">\r\n\t\t\t\t<div class=\"input-field col s12\">\r\n\t\t\t\t\t<a (click)=\"irPerfil()\" class=\"btn waves-effect waves-light col s12\">Acceder</a>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\r\n\r\n\t\t<a class=\"left-align\" href=\"#!\">Registrate</a>\r\n\r\n\r\n\t</div> -->"
 
 /***/ }),
 
