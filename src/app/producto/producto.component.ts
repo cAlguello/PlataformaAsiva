@@ -13,15 +13,16 @@ declare var $: any;
 export class ProductoComponent implements OnInit {
   
   dataProductosEmpresa: Observable<Array<any>>;
-
+public host:any;
   constructor(private ref: ChangeDetectorRef, private router: Router, private _fb: FormBuilder, private service: ServicesService) {
-
+//this.host = 'http://127.0.0.1:9000';
+this.host = 'http://apiasiva.hopto.org:9000';
     $(document).ready(function () {
       //Autocomplete
       $(function () {
         $.ajax({
           type: 'GET',
-          url: 'http://127.0.0.1:9000/fetchProductos',
+          url:'http://apiasiva.hopto.org:9000/fetchProductos',
           success: function (response) {
             var ProductoArray = response;
             var dataProducto = {};

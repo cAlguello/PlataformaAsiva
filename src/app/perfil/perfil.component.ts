@@ -33,10 +33,11 @@ export class PerfilComponent implements OnInit {
   public data_direccion_empresa: any;
   public data_fono_empresa: any;
   public data_mail_empresa: any;
-  public dataVistaHanConcretado: Observable<Array<any>>;  
+  public dataVistaHanConcretado: Observable<Array<any>>;
   public dataProductosEmpresa: Observable<Array<any>>;
   public productoServicioEmpresa: any[] = [];
   public ordenesDeCompraEmpresa: any[] = [];
+  public host: any;
   localRut = {
     rut: '',
     id_chilecompra: ''
@@ -45,7 +46,8 @@ export class PerfilComponent implements OnInit {
 
   constructor(private ref: ChangeDetectorRef, private router: Router, private _fb: FormBuilder, private service: ServicesService) {
     this.giroData = service.getGiros();
-
+    //this.host = 'http://127.0.0.1:9000';
+    this.host = 'http://apiasiva.hopto.org:9000';
 
     $(document).ready(function () {
       $('.tooltipped').tooltip({ delay: 50 });
@@ -61,7 +63,7 @@ export class PerfilComponent implements OnInit {
       $(function () {
         $.ajax({
           type: 'GET',
-          url: 'http://127.0.0.1:9000/giroController',
+          url: 'http://apiasiva.hopto.org:9000/giroController',
           success: function (response) {
             var EmpresaArray = response;
             var dataEmpresa = {};
@@ -91,14 +93,14 @@ export class PerfilComponent implements OnInit {
     var b = Math.floor(Math.random() * 200);
     return "rgb(" + r + "," + g + "," + b + ")";
   }
-  
-  informacionOrdenDeCompra(){
-   
+
+  informacionOrdenDeCompra() {
+
     //CHILECOMPRA
     this.service.getEmpresaChileCompra(this.localRut.rut).subscribe(val1 => {
       console.log("ID CHILECOMPRA");
       console.log(val1.listaEmpresas[0].CodigoEmpresa);
-      this.localRut.id_chilecompra=val1.listaEmpresas[0].CodigoEmpresa;
+      this.localRut.id_chilecompra = val1.listaEmpresas[0].CodigoEmpresa;
       console.log(this.localRut);
       //ORDEN DE COMPRA
       this.service.getOrdenesDeCompraChileCompra(val1.listaEmpresas[0].CodigoEmpresa).subscribe(val2 => {
@@ -111,17 +113,17 @@ export class PerfilComponent implements OnInit {
         console.log(this.ordenesDeCompraEmpresa);
 
         //DETALLE ORDEN DE COMPRA
-        
 
-      //  for (var f = 0; f < this.ordenesDeCompraEmpresa.length; f++) {
-          for (var f = 0; f < 1; f++) {
-          
+
+        //  for (var f = 0; f < this.ordenesDeCompraEmpresa.length; f++) {
+        for (var f = 0; f < 1; f++) {
+
           this.service.getDetalleOrdenDeCompraChileCompra(this.ordenesDeCompraEmpresa[f]).subscribe(val => {
             console.log("DATOS CHILECOMPRA");
             for (var i = 0; i < val.Listado.length; i++) {
               console.log(val);
               for (var e = 0; e < val.Listado[i].Items.Listado.length; e++) {
-                console.log("PROCESANDO PRODUCTO "+e+" DE "+val.Listado[i].Items.Listado.length);
+                console.log("PROCESANDO PRODUCTO " + e + " DE " + val.Listado[i].Items.Listado.length);
                 this.productoServicioEmpresa.push(val.Listado[i].Items.Listado[e].Producto);
               }
             }
@@ -137,7 +139,7 @@ export class PerfilComponent implements OnInit {
 
     });
 
- 
+
 
 
 
@@ -146,38 +148,34 @@ export class PerfilComponent implements OnInit {
     //CHILECOMPRA
   }
 
-  formato_rut()
-  {
-      var sRut1 = this.localRut.rut;      //contador de para saber cuando insertar el . o la -
-      var nPos = 0; //Guarda el rut invertido con los puntos y el guión agregado
-      var sInvertido = ""; //Guarda el resultado final del rut como debe ser
-      var sRut = "";
-      for(var i = sRut1.length - 1; i = 0; i-- )
-      {
-          sInvertido += sRut1.charAt(i);
-          if (i == sRut1.length - 1 )
-              sInvertido += "-";
-          else if (nPos == 3)
-          {
-              sInvertido += ".";
-              nPos = 0;
-          }
-          nPos++;
+  formato_rut() {
+    var sRut1 = this.localRut.rut;      //contador de para saber cuando insertar el . o la -
+    var nPos = 0; //Guarda el rut invertido con los puntos y el guión agregado
+    var sInvertido = ""; //Guarda el resultado final del rut como debe ser
+    var sRut = "";
+    for (var i = sRut1.length - 1; i = 0; i--) {
+      sInvertido += sRut1.charAt(i);
+      if (i == sRut1.length - 1)
+        sInvertido += "-";
+      else if (nPos == 3) {
+        sInvertido += ".";
+        nPos = 0;
       }
-      for(var j = sInvertido.length - 1; j = 0; j-- )
-      {
-          if (sInvertido.charAt(sInvertido.length - 1) != ".")
-              sRut += sInvertido.charAt(j);
-          else if (j != sInvertido.length - 1 )
-              sRut += sInvertido.charAt(j);
-      }
-      //Pasamos al campo el valor formateado
-      this.localRut.rut = sRut.toUpperCase();
-      console.log(this.localRut.rut);
+      nPos++;
+    }
+    for (var j = sInvertido.length - 1; j = 0; j--) {
+      if (sInvertido.charAt(sInvertido.length - 1) != ".")
+        sRut += sInvertido.charAt(j);
+      else if (j != sInvertido.length - 1)
+        sRut += sInvertido.charAt(j);
+    }
+    //Pasamos al campo el valor formateado
+    this.localRut.rut = sRut.toUpperCase();
+    console.log(this.localRut.rut);
   }
 
   ngOnInit() {
-    
+
 
     this.setDetalleNegocioConcretado();
     //this.setNegocioConcretado();
@@ -411,7 +409,10 @@ export class PerfilComponent implements OnInit {
     console.log(giro);
     this.service.addGiroEmpresa(giro).subscribe(val => {
       console.log(val);
-
+      this.ref.detectChanges();
+      this.girosUnicos = val;
+      console.log("GIROS UNICOS");
+      console.log(this.girosUnicos);
       //
       /* this.service.getGirosUnicosEmpresa(sessionStorage.getItem('id')).subscribe(val => {
          this.girosUnicos = val;
@@ -462,7 +463,7 @@ export class PerfilComponent implements OnInit {
     this.router.navigateByUrl("testfilter");
   }
 
-  irProducto(){
+  irProducto() {
     this.router.navigateByUrl("producto")
   }
 

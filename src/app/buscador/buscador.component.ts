@@ -21,6 +21,7 @@ import { ChangeDetectionStrategy } from '@angular/core';
 export class BuscadorComponent implements OnInit {
   fecha: any;
   estado: any;
+  public host: any;
   EmpresaModal: dataEmpresaModal = new dataEmpresaModal(null, null, null, null, null, null, null, null, null);
   dataVista: Observable<Array<any>>;
   Text: string = "Description Here....";
@@ -40,7 +41,8 @@ export class BuscadorComponent implements OnInit {
   }
 
   constructor(private service: ServicesService, private dateFilter: DatePipe) {
-
+  //this.host = 'http://127.0.0.1:9000';
+  this.host = 'http://apiasiva.hopto.org:9000';
     $(document).ready(function () {
       $('.tooltipped').tooltip({ delay: 50 });
       //$('.modal').modal();      
@@ -118,7 +120,7 @@ export class BuscadorComponent implements OnInit {
       $(function () {
         $.ajax({
           type: 'GET',
-          url: 'http://127.0.0.1:9000/fetchData',
+          url: 'http://apiasiva.hopto.org:9000/fetchData',
           success: function (response) {
             var EmpresaArray = response;
             var dataEmpresa = {};
