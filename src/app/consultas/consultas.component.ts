@@ -40,7 +40,15 @@ export class ConsultasComponent implements OnInit {
   dataVistaHanConcretado1: Observable<Array<any>>;
   dataNegocioConcretadoFinal: Observable<Array<any>>;
   constructor(private service: ServicesService) {
+    $(document).ready(function () {
+      $('.modal').modal();
+    });
 
+
+    $(document).ready(function () {
+      $(".button-collapse").sideNav();
+      $('.sidenav').sidenav();
+    });
 
   }
   ngOnInit() {

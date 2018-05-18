@@ -1,6 +1,9 @@
 <nav>
   <div class="nav-wrapper  indigo darken-1">
-    <a href="#" class="brand-logo">ASIVA PROTOTIPO</a>
+    <a href="#" class="brand-logo center">ASIVA</a>
+    <a href="#" data-activates="mobile-demo" class="button-collapse">
+      <i class="material-icons">menu</i>
+    </a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
       <li>
         <a routerLink="/perfil">Perfil</a>
@@ -15,7 +18,20 @@
         <a href="" (click)="cerrarSesion()">Salir</a>
       </li>
     </ul>
-
+    <ul id="mobile-demo" class="side-nav">
+        <li>
+          <a routerLink="/perfil">Perfil</a>
+        </li>
+        <li>
+          <a routerLink="/consultas">Consultas</a>
+        </li>
+        <li>
+          <a routerLink="/buscador">Buscador</a>
+        </li>
+        <li>
+          <a href="" (click)="cerrarSesion()">Salir</a>
+        </li>
+      </ul>
   </div>
 </nav>
 <!--
@@ -83,13 +99,13 @@
       </div>
       <div class="col s4">
         <i class="small material-icons">mode_edit</i>
-        <label>NUEVO CAMPO PLACEHOLDER</label>
+        <label>PLACEHOLDER</label>
         <div>
           <p class="header h2 grey-text">PLACEHOLDER</p>
         </div>
       </div>
       <div class="row">
-        <div class="col s4">
+        <div class="col s6">
           <i class="small material-icons">phone</i>
           <label>Fono</label>
           <div>
@@ -97,20 +113,14 @@
           </div>
         </div>
 
-        <div class="col s4">
+        <div class="col s6">
           <i class="small material-icons">email</i>
           <label>Mail</label>
           <div>
             <p class="header h2">{{data_mail_empresa}}</p>
           </div>
         </div>
-        <div class="col s4">
-          <i class="small material-icons">mode_edit</i>
-          <label>NUEVO CAMPO PLACEHOLDER</label>
-          <div>
-            <p class="header h2 grey-text">PLACEHOLDER</p>
-          </div>
-        </div>
+        
       </div>
       <div class="card-action">
 
@@ -146,11 +156,14 @@
       <div class="card-action">
 
 
-        <a class="waves-effect waves-light black btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Remueve giros de tu empresa. Esto se vera reflejado de manera inmediata en el buscador"
-          data-toggle="modal" data-target="modal2">Editar Giros</a>
-
-        <a class="waves-effect waves-light black btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Agrega giros nuevos a tu empresa. Esto se vera reflejado de manera inmediata en el buscador"
-          data-toggle="modal" data-target="modal3">Agregar Giros</a>
+        <a class="waves-effect waves-light black btn modal-trigger tooltipped " data-position="bottom" data-delay="50"
+          data-tooltip="Remueve giros de tu empresa. Esto se vera reflejado de manera inmediata en el buscador" data-toggle="modal"
+          data-target="modal2">Editar Giros</a>
+        <div class="row">
+        </div>
+        <a class="waves-effect waves-light black btn modal-trigger tooltipped " data-position="bottom" data-delay="50"
+          data-tooltip="Agrega giros nuevos a tu empresa. Esto se vera reflejado de manera inmediata en el buscador" data-toggle="modal"
+          data-target="modal3">Agregar Giros</a>
 
 
       </div>
@@ -167,7 +180,7 @@
           <table class="highlight">
             <thead>
               <tr>
-                <th>Productos/Servicios</th>
+                <th>Items</th>
               </tr>
             </thead>
 
@@ -180,7 +193,7 @@
 
         </div>
         <div class="card-action">
-          <a (click)="irProducto()" class="waves-effect waves-light black btn">Editar Productos/Servicios</a>
+          <a (click)="irProducto()" class="waves-effect waves-light black btn">Editar</a>
         </div>
       </div>
 
@@ -188,7 +201,7 @@
       <!-- Perfil Modal Structure -->
       <div id="modal1" class="modal">
         <div class="modal-content">
-          <form class="col s4" [formGroup]="myForm" novalidate (ngSubmit)="save(myForm.value, myForm.valid)">
+          <form class="col s12" [formGroup]="myForm" novalidate (ngSubmit)="save(myForm.value, myForm.valid)">
 
 
             <div>

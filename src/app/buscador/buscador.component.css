@@ -1,1 +1,6 @@
-.modal { width: 45% !important  }
+.modal { 
+    max-width: 90% !important;
+    max-height: 90% !important;
+
+  }
+

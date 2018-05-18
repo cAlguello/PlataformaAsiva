@@ -11,18 +11,24 @@ declare var $: any;
   styleUrls: ['./producto.component.css']
 })
 export class ProductoComponent implements OnInit {
-  
+
   dataProductosEmpresa: Observable<Array<any>>;
-public host:any;
+  public host: any;
   constructor(private ref: ChangeDetectorRef, private router: Router, private _fb: FormBuilder, private service: ServicesService) {
-//this.host = 'http://127.0.0.1:9000';
-this.host = 'http://apiasiva.hopto.org:9000';
+    //this.host = 'http://127.0.0.1:9000';
+    this.host = 'http://apiasiva.hopto.org:9000';
+
+    $(document).ready(function () {
+      $(".button-collapse").sideNav();
+      $('.sidenav').sidenav();
+    });
+   
     $(document).ready(function () {
       //Autocomplete
       $(function () {
         $.ajax({
           type: 'GET',
-          url:'http://apiasiva.hopto.org:9000/fetchProductos',
+          url: 'http://apiasiva.hopto.org:9000/fetchProductos',
           success: function (response) {
             var ProductoArray = response;
             var dataProducto = {};
@@ -32,7 +38,7 @@ this.host = 'http://apiasiva.hopto.org:9000';
             }
             $('input.autocomplete').autocomplete({
               data: dataProducto,
-              limit: 10, // The max amount of results that can be shown at once. Default: Infinity.
+              limit: 6, // The max amount of results that can be shown at once. Default: Infinity.
 
               onAutocomplete: function (val) {
               },
@@ -44,8 +50,8 @@ this.host = 'http://apiasiva.hopto.org:9000';
       });
     });
 
-    this.dataProductosEmpresa=service.getAllProductos();
-   }
+    this.dataProductosEmpresa = service.getAllProductos();
+  }
 
   ngOnInit() {
     console.log(this.dataProductosEmpresa);

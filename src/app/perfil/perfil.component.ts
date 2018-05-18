@@ -53,6 +53,8 @@ export class PerfilComponent implements OnInit {
       $('.tooltipped').tooltip({ delay: 50 });
       $('.modal').modal();
 
+      $(".button-collapse").sideNav();
+      $('.sidenav').sidenav();
       //chilecompra
 
       //chilecompra

@@ -43,13 +43,14 @@ export class BuscadorComponent implements OnInit {
   constructor(private service: ServicesService, private dateFilter: DatePipe) {
   //this.host = 'http://127.0.0.1:9000';
   this.host = 'http://apiasiva.hopto.org:9000';
+
+  $(document).ready(function () {
+    $(".button-collapse").sideNav();
+    $('.sidenav').sidenav();
+  });
     $(document).ready(function () {
       $('.tooltipped').tooltip({ delay: 50 });
       //$('.modal').modal();      
-      //
-
-
-
       $('.modal').modal({
         dismissible: true, // Modal can be dismissed by clicking outside of the modal
         opacity: .5, // Opacity of modal background
