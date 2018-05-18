@@ -27,7 +27,8 @@ export class ServicesService {
   //options = new RequestOptions({ headers: this.headers });
 
   constructor(private httpClient: HttpClient, private http: Http) {
-    this.host = 'http://127.0.0.1:9000';
+    //this.host = 'http://127.0.0.1:9000';
+    this.host = 'http://apiasiva.hopto.org:9000';
     this.header = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded', "method": "post" });
   }
   //
