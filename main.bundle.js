@@ -829,6 +829,8 @@ var BuscadorComponent = (function () {
             fecha_consulta: '',
             estado: ''
         };
+        //this.host = 'http://127.0.0.1:9000';
+        this.host = 'http://apiasiva.hopto.org:9000';
         $(document).ready(function () {
             $('.tooltipped').tooltip({ delay: 50 });
             //$('.modal').modal();      
@@ -892,7 +894,7 @@ var BuscadorComponent = (function () {
             $(function () {
                 $.ajax({
                     type: 'GET',
-                    url: 'http://127.0.0.1:9000/fetchData',
+                    url: 'http://apiasiva.hopto.org:9000/fetchData',
                     success: function (response) {
                         var EmpresaArray = response;
                         var dataEmpresa = {};
@@ -1642,6 +1644,8 @@ var PerfilComponent = (function () {
             return "rgb(" + r + "," + g + "," + b + ")";
         };
         this.giroData = service.getGiros();
+        //this.host = 'http://127.0.0.1:9000';
+        this.host = 'http://apiasiva.hopto.org:9000';
         $(document).ready(function () {
             $('.tooltipped').tooltip({ delay: 50 });
             $('.modal').modal();
@@ -1653,7 +1657,7 @@ var PerfilComponent = (function () {
             $(function () {
                 $.ajax({
                     type: 'GET',
-                    url: 'http://127.0.0.1:9000/giroController',
+                    url: 'http://apiasiva.hopto.org:9000/giroController',
                     success: function (response) {
                         var EmpresaArray = response;
                         var dataEmpresa = {};
@@ -1939,6 +1943,10 @@ var PerfilComponent = (function () {
         console.log(giro);
         this.service.addGiroEmpresa(giro).subscribe(function (val) {
             console.log(val);
+            _this.ref.detectChanges();
+            _this.girosUnicos = val;
+            console.log("GIROS UNICOS");
+            console.log(_this.girosUnicos);
             //
             /* this.service.getGirosUnicosEmpresa(sessionStorage.getItem('id')).subscribe(val => {
                this.girosUnicos = val;
@@ -2172,12 +2180,14 @@ var ProductoComponent = (function () {
         this.router = router;
         this._fb = _fb;
         this.service = service;
+        //this.host = 'http://127.0.0.1:9000';
+        this.host = 'http://apiasiva.hopto.org:9000';
         $(document).ready(function () {
             //Autocomplete
             $(function () {
                 $.ajax({
                     type: 'GET',
-                    url: 'http://127.0.0.1:9000/fetchProductos',
+                    url: 'http://apiasiva.hopto.org:9000/fetchProductos',
                     success: function (response) {
                         var ProductoArray = response;
                         var dataProducto = {};
