@@ -2338,19 +2338,19 @@ var ServicesService = (function () {
     };
     //
     ServicesService.prototype.addUser = function (user) {
-        return this.httpClient.post("http://127.0.0.1:9000/authController", user, this.header);
+        return this.httpClient.post(this.host + "/authController", user, this.header);
     };
     ServicesService.prototype.addConsulta = function (consulta) {
-        return this.httpClient.post("http://127.0.0.1:9000/consultaController", consulta, this.header);
+        return this.httpClient.post(this.host + "/consultaController", consulta, this.header);
     };
     ServicesService.prototype.addOrUpdateEmpresa = function (empresa) {
-        return this.httpClient.post("http://127.0.0.1:9000/dataEmpresaController", empresa, this.header);
+        return this.httpClient.post(this.host + "/dataEmpresaController", empresa, this.header);
     };
     ServicesService.prototype.removeGiroEmpresa = function (giro) {
-        return this.httpClient.post("http://127.0.0.1:9000/girosUnicosEmpresa", giro, this.header);
+        return this.httpClient.post(this.host + "/girosUnicosEmpresa", giro, this.header);
     };
     ServicesService.prototype.addGiroEmpresa = function (giro) {
-        return this.httpClient.post("http://127.0.0.1:9000/giroController", giro, this.header);
+        return this.httpClient.post(this.host + "/giroController", giro, this.header);
     };
     //REVISAR NUEVOS
     ServicesService.prototype.setConsultaNegocio = function (consulta) {
@@ -2370,7 +2370,7 @@ var ServicesService = (function () {
             .map(function (res) { return res.json(); });
     };
     ServicesService.prototype.getServicios = function () {
-        return this.http.get("http://127.0.0.1:9000/servicioController")
+        return this.http.get(this.host + "/servicioController")
             .map(function (res) { return res.json(); });
     };
     ServicesService.prototype.getUser = function (user) {
@@ -2379,27 +2379,27 @@ var ServicesService = (function () {
             .map(function (res) { return res.json(); });
     };
     ServicesService.prototype.getEmpresa = function (user) {
-        return this.http.get("http://127.0.0.1:9000/empresaController/" + user)
+        return this.http.get(this.host + "/empresaController/" + user)
             .map(function (res) { return res.json(); });
     };
     ServicesService.prototype.getAllEmpresas = function () {
-        return this.http.get("http://127.0.0.1:9000/dataEmpresaController")
+        return this.http.get(this.host + "/dataEmpresaController")
             .map(function (res) { return res.json(); });
     };
     ServicesService.prototype.getGiros = function () {
-        return this.http.get("http://127.0.0.1:9000/giroController")
+        return this.http.get(this.host + "/giroController")
             .map(function (res) { return res.json(); });
     };
     ServicesService.prototype.getAreaGiros = function () {
-        return this.http.get("http://127.0.0.1:9000/areaGiroController")
+        return this.http.get(this.host + "/areaGiroController")
             .map(function (res) { return res.json(); });
     };
     ServicesService.prototype.getGirosEmpresas = function () {
-        return this.http.get("http://127.0.0.1:9000/giroEmpresaController")
+        return this.http.get(this.host + "/giroEmpresaController")
             .map(function (res) { return res.json(); });
     };
     ServicesService.prototype.fetchData = function () {
-        return this.http.get("http://127.0.0.1:9000/fetchData")
+        return this.http.get(this.host + "/fetchData")
             .map(function (res) { return res.json(); });
     };
     ServicesService = __decorate([
