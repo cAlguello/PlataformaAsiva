@@ -32,10 +32,25 @@ export class ServicesService {
     this.header = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded', "method": "post" });
   }
   //
+
+  isAuthenticated(){
+    let token = sessionStorage.getItem('id');
+    if (token){
+      return true;
+    }
+    return false;
+  }
   getAllProductos(): Observable<any> {
     return this.http.get(this.host+'/fetchProductos')
       .map((res: Response) => res.json())
   }
+
+  contarProductos(): Observable<any> {
+    return this.http.get(this.host+'/adminUsoDePlataformaController/contarProductos')
+      .map((res: Response) => res.json())
+  }
+
+
   //TEST CHILECOMPRA
 
   getEmpresaChileCompra(rut): Observable<any> {
@@ -70,6 +85,20 @@ export class ServicesService {
       .map((res: Response) => res.json())
   }
   //ADMIN SERVICES
+
+  getTotalEmpresas(): Observable<any> {
+    //console.log(this.host+'/authController/'+user)
+    return this.http.get(this.host + '/dataEmpresaController/contarEmpresas')
+      .map((res: Response) => res.json())
+  }
+
+  getTotalConsultas():Observable<any> {
+    //console.log(this.host+'/authController/'+user)
+    return this.http.get(this.host + '/adminUsoDePlataformaController/contarDatos')
+      .map((res: Response) => res.json())
+  }
+
+
   getTodasConsultadasAdmin(): Observable<any> {
     //console.log(this.host+'/authController/'+user)
     return this.http.get(this.host + '/adminHanConsultadoController')
@@ -121,6 +150,12 @@ export class ServicesService {
     return this.httpClient.post(this.host+"/authController", user, this.header);
   }
 
+  getProductosUnicos(id): Observable<any> {
+    //console.log(this.host+'/authController/'+user)
+    return this.http.get(this.host + '/dataEmpresaController/verProductosEmpresa/' + id)
+      .map((res: Response) => res.json())
+  }
+ 
 
   addConsulta(consulta): Observable<any> {
     return this.httpClient.post(this.host+"/consultaController", consulta, this.header);
@@ -137,6 +172,17 @@ export class ServicesService {
   addGiroEmpresa(giro): Observable<any> {
     return this.httpClient.post(this.host+"/giroController", giro, this.header);
   }
+
+  addProductoEmpresa(producto): Observable<any> {
+    return this.httpClient.post(this.host+"/dataEmpresaController/addProductoEmpresa", producto, this.header);
+  }
+
+  removeProductoEmpresa(producto): Observable<any> {
+    return this.httpClient.post(this.host+"/dataEmpresaController/removeProductoEmpresa", producto, this.header);
+  }
+
+
+  
 
   //REVISAR NUEVOS
 

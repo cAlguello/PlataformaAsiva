@@ -19,6 +19,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { BuscadorFilterPipe2 } from './pipes/buscador-filter.pipe.2';
 import { ProductoComponent } from './producto/producto.component';
 import { ProductoFilterPipe } from './pipes/producto-filter.pipe';
+import { authGuard } from './entidades/authGuard';
+import { HomeComponent } from './home/home.component';
 
 
 
@@ -35,7 +37,8 @@ import { ProductoFilterPipe } from './pipes/producto-filter.pipe';
     BuscadorFilterPipe2,
     ContactoComponent,
     ProductoComponent,
-    ProductoFilterPipe
+    ProductoFilterPipe,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +49,7 @@ import { ProductoFilterPipe } from './pipes/producto-filter.pipe';
     ReactiveFormsModule,
     NgxPaginationModule
   ],
-  providers: [appRoutingProviders, ServicesService, HttpClient],
+  providers: [appRoutingProviders, ServicesService, HttpClient, authGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

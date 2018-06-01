@@ -1,6 +1,6 @@
 <nav>
   <div class="nav-wrapper  indigo darken-1">
-    <a href="#" class="brand-logo center">ASIVA</a>
+    <a class="brand-logo center">ASIVA</a>
     <a href="#" data-activates="mobile-demo" class="button-collapse">
       <i class="material-icons">menu</i>
     </a>
@@ -19,19 +19,19 @@
       </li>
     </ul>
     <ul id="mobile-demo" class="side-nav">
-        <li>
-          <a routerLink="/perfil">Perfil</a>
-        </li>
-        <li>
-          <a routerLink="/consultas">Consultas</a>
-        </li>
-        <li>
-          <a routerLink="/buscador">Buscador</a>
-        </li>
-        <li>
-          <a href="" (click)="cerrarSesion()">Salir</a>
-        </li>
-      </ul>
+      <li>
+        <a routerLink="/perfil">Perfil</a>
+      </li>
+      <li>
+        <a routerLink="/consultas">Consultas</a>
+      </li>
+      <li>
+        <a routerLink="/buscador">Buscador</a>
+      </li>
+      <li>
+        <a href="" (click)="cerrarSesion()">Salir</a>
+      </li>
+    </ul>
   </div>
 </nav>
 <!--
@@ -78,32 +78,26 @@
 -->
 
 <div class="row ">
-  <div class="col s10 card offset-s1">
+  <div class="col s12 card">
     <div class="card-action indigo darken-1 white-text center-align">
       <h6>Datos Generales de Empresa</h6>
     </div>
     <div class="card-content">
-      <div class="col s4">
+      <div class="col s6">
         <i class="small material-icons">account_circle</i>
         <label>Nombre</label>
         <div>
           <p class="header h2">{{data_nombre_empresa}}</p>
         </div>
       </div>
-      <div class="col s4">
+      <div class="col s6">
         <i class="small material-icons">mode_edit</i>
         <label>Direccion</label>
         <div>
           <p class="header h2">{{data_direccion_empresa}}</p>
         </div>
       </div>
-      <div class="col s4">
-        <i class="small material-icons">mode_edit</i>
-        <label>PLACEHOLDER</label>
-        <div>
-          <p class="header h2 grey-text">PLACEHOLDER</p>
-        </div>
-      </div>
+      
       <div class="row">
         <div class="col s6">
           <i class="small material-icons">phone</i>
@@ -120,7 +114,7 @@
             <p class="header h2">{{data_mail_empresa}}</p>
           </div>
         </div>
-        
+
       </div>
       <div class="card-action">
 
@@ -131,269 +125,286 @@
     </div>
 
   </div>
+</div>
+<div class="row">
+  <div class="col s12 m6 card">
+    <div class="card-action indigo darken-1 white-text center-align">
+      <h6>Giros de la Empresa</h6>
+    </div>
+    <div class="card-content">
+      <table class="highlight">
+        <thead>
+          <tr>
+            <th>Giros</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let e of girosUnicos ">
+            <td>{{e.nombre_giro}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card-action">
 
 
-  <div class="row">
-    <div class="col s5 card push-s1">
+      <a class="waves-effect waves-light black btn modal-trigger tooltipped " data-position="bottom" data-delay="50" data-tooltip="Remueve giros de tu empresa. Esto se vera reflejado de manera inmediata en el buscador"
+        data-toggle="modal" data-target="modal2">Editar Giros</a>
+      <div class="row">
+      </div>
+      <a class="waves-effect waves-light black btn modal-trigger tooltipped " data-position="bottom" data-delay="50" data-tooltip="Agrega giros nuevos a tu empresa. Esto se vera reflejado de manera inmediata en el buscador"
+        data-toggle="modal" data-target="modal3">Agregar Giros</a>
+    </div>
+
+  </div>
+  <div class="cardExtra">
+    <div class="col s12 m6 card">
       <div class="card-action indigo darken-1 white-text center-align">
-        <h6>Giros de la Empresa</h6>
+        <h6>Productos y Servicios de la Empresa</h6>
       </div>
       <div class="card-content">
         <table class="highlight">
           <thead>
             <tr>
+              <th>Items</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let e of productoServicioEmpresa ">
+              <td>{{e.nombre_producto}}</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+      <div class="card-action">
+        <a (click)="irProducto()" class="waves-effect waves-light black btn">Agregar Productos/Servicios</a>
+        <div class="row"></div>
+        <a class="waves-effect waves-light black btn modal-trigger" data-toggle="modal" data-target="modal10">Quitar PRoductos/Servicios</a>
+      </div>
+    </div>
+
+
+    <!-- Perfil Modal Structure -->
+    <div id="modal1" class="modal">
+      <div class="modal-content">
+        <form class="col s12" [formGroup]="myForm" novalidate (ngSubmit)="save(myForm.value, myForm.valid)">
+
+
+          <div>
+            <i class="small material-icons">account_circle</i>
+            <label>Nombre</label>
+            <input type="text" formControlName="nombre_empresa">
+            <small [hidden]="myForm.controls.nombre_empresa.valid || (myForm.controls.nombre_empresa.pristine && !submitted)">
+              El nombre de la empresa es requerido.
+            </small>
+          </div>
+
+          <div>
+            <i class="small material-icons">mode_edit</i>
+            <label>Direccion</label>
+            <input type="text" formControlName="direccion_empresa">
+            <small [hidden]="myForm.controls.direccion_empresa.valid || (myForm.controls.direccion_empresa.pristine && !submitted)">
+              La direccion de la empresa es requerida.
+            </small>
+          </div>
+
+
+          <div>
+            <i class="small material-icons">phone</i>
+            <label>Fono</label>
+            <input type="text" formControlName="fono_empresa">
+            <small [hidden]="myForm.controls.fono_empresa.valid || (myForm.controls.fono_empresa.pristine && !submitted)">
+              El fono de la empresa es requerido.
+            </small>
+          </div>
+
+
+          <div>
+            <i class="small material-icons">email</i>
+            <label>Mail</label>
+            <input type="text" formControlName="mail_empresa">
+            <small [hidden]="myForm.controls.mail_empresa.valid || (myForm.controls.mail_empresa.pristine && !submitted)">
+              El mail de la empresa es requerido.
+            </small>
+          </div>
+          <button class="modal-action modal-close waves-effect waves-green btn-flat" type="submit" [disabled]="!myForm.valid">Actualizar Datos</button>
+
+        </form>
+
+
+      </div>
+
+    </div>
+
+    <!-- Producto Modal Structure -->
+    <div id="modal10" class="modal">
+      <div class="modal-content">
+        <table>
+          <thead>
+            <tr>
+              <th>Productos</th>
+              <th>Remover</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let e of productoServicioEmpresa ">
+              <td>{{e.nombre_producto}}</td>
+              <td>
+                <button class="btn-floating btn-medium waves-effect waves-light red" (click)="removeProducto(e)">
+                  <i class="material-icons">remove</i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+
+
+    <!-- Giro Modal Structure -->
+    <div id="modal2" class="modal">
+      <div class="modal-content">
+        <table>
+          <thead>
+            <tr>
               <th>Giros</th>
+              <th>Remover</th>
             </tr>
           </thead>
 
           <tbody>
             <tr *ngFor="let e of girosUnicos ">
               <td>{{e.nombre_giro}}</td>
+              <td>
+                <button class="btn-floating btn-medium waves-effect waves-light red" (click)="removeGiro(e)">
+                  <i class="material-icons">remove</i>
+                </button>
+              </td>
             </tr>
           </tbody>
         </table>
       </div>
-      <div class="card-action">
-
-
-        <a class="waves-effect waves-light black btn modal-trigger tooltipped " data-position="bottom" data-delay="50"
-          data-tooltip="Remueve giros de tu empresa. Esto se vera reflejado de manera inmediata en el buscador" data-toggle="modal"
-          data-target="modal2">Editar Giros</a>
-        <div class="row">
-        </div>
-        <a class="waves-effect waves-light black btn modal-trigger tooltipped " data-position="bottom" data-delay="50"
-          data-tooltip="Agrega giros nuevos a tu empresa. Esto se vera reflejado de manera inmediata en el buscador" data-toggle="modal"
-          data-target="modal3">Agregar Giros</a>
-
-
-      </div>
-
-
-
-    </div>
-    <div class="cardExtra">
-      <div class="col s5 card push-s1">
-        <div class="card-action indigo darken-1 white-text center-align">
-          <h6>Productos y Servicios de la Empresa</h6>
-        </div>
-        <div class="card-content">
-          <table class="highlight">
-            <thead>
-              <tr>
-                <th>Items</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <tr *ngFor="let e of dataProductosEmpresa ">
-                <td></td>
-              </tr>
-            </tbody>
-          </table>
-
-        </div>
-        <div class="card-action">
-          <a (click)="irProducto()" class="waves-effect waves-light black btn">Editar</a>
-        </div>
-      </div>
-
-
-      <!-- Perfil Modal Structure -->
-      <div id="modal1" class="modal">
-        <div class="modal-content">
-          <form class="col s12" [formGroup]="myForm" novalidate (ngSubmit)="save(myForm.value, myForm.valid)">
-
-
-            <div>
-              <i class="small material-icons">account_circle</i>
-              <label>Nombre</label>
-              <input type="text" formControlName="nombre_empresa">
-              <small [hidden]="myForm.controls.nombre_empresa.valid || (myForm.controls.nombre_empresa.pristine && !submitted)">
-                El nombre de la empresa es requerido.
-              </small>
-            </div>
-
-            <div>
-              <i class="small material-icons">mode_edit</i>
-              <label>Direccion</label>
-              <input type="text" formControlName="direccion_empresa">
-              <small [hidden]="myForm.controls.direccion_empresa.valid || (myForm.controls.direccion_empresa.pristine && !submitted)">
-                La direccion de la empresa es requerida.
-              </small>
-            </div>
-
-
-            <div>
-              <i class="small material-icons">phone</i>
-              <label>Fono</label>
-              <input type="text" formControlName="fono_empresa">
-              <small [hidden]="myForm.controls.fono_empresa.valid || (myForm.controls.fono_empresa.pristine && !submitted)">
-                El fono de la empresa es requerido.
-              </small>
-            </div>
-
-
-            <div>
-              <i class="small material-icons">email</i>
-              <label>Mail</label>
-              <input type="text" formControlName="mail_empresa">
-              <small [hidden]="myForm.controls.mail_empresa.valid || (myForm.controls.mail_empresa.pristine && !submitted)">
-                El mail de la empresa es requerido.
-              </small>
-            </div>
-            <button class="modal-action modal-close waves-effect waves-green btn-flat" type="submit" [disabled]="!myForm.valid">Actualizar Datos</button>
-
-          </form>
-
-
-        </div>
-
-      </div>
-
-      <!-- Giro Modal Structure -->
-      <div id="modal2" class="modal">
-        <div class="modal-content">
-          <table>
-            <thead>
-              <tr>
-                <th>Giros</th>
-                <th>Remover</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <tr *ngFor="let e of girosUnicos ">
-                <td>{{e.nombre_giro}}</td>
-
-
-                <td>
-                  <button class="btn-floating btn-medium waves-effect waves-light red" (click)="removeGiro(e)">
-                    <i class="material-icons">menu</i>
-                  </button>
-                </td>
-
-
-              </tr>
-
-
-            </tbody>
-          </table>
-        </div>
-        <!--<div class="modal-footer">
+      <!--<div class="modal-footer">
     <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Aceptar</a>
   </div> -->
-      </div>
+    </div>
 
-      <!-- Giro Modal Agrega Giros  Structure -->
-      <div id="modal3" class="modal">
-        <div class="modal-content">
-          <div class="col-md-6">
-            <input type="search" [(ngModel)]="searchText2" id="autocomplete-input" class="autocomplete" placeholder="  Ingrese Giro a buscar"
-            />
-            <label class="label-icon" for="search">
-              <i class="material-icons">search</i>
-            </label>
+    <!-- Giro Modal Agrega Giros  Structure -->
+    <div id="modal3" class="modal">
+      <div class="modal-content">
+        <div class="col-md-6">
+          <input type="search" [(ngModel)]="searchText2" id="autocomplete-input" class="autocomplete" placeholder="  Ingrese Giro a buscar"
+          />
+          <label class="label-icon" for="search">
+            <i class="material-icons">search</i>
+          </label>
 
-          </div>
-          <table class="highlight centered">
-            <thead>
-              <tr>
-                <th>Nombre Giro</th>
-                <th>Agregar</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let e of giroData | async | buscadorFilter2: searchText2 | paginate: {itemsPerPage:5, currentPage: p}">
-
-                <td>{{e.nombre_giro}}</td>
-                <td>
-                  <button class="btn-floating btn-medium waves-effect waves-light red" (click)="addGiro(e)">
-                    <i class="material-icons">menu</i>
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <pagination-controls (pageChange)="p=$event"></pagination-controls>
         </div>
+        <table class="highlight centered">
+          <thead>
+            <tr>
+              <th>Nombre Giro</th>
+              <th>Agregar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let e of giroData | async | buscadorFilter2: searchText2 | paginate: {itemsPerPage:5, currentPage: p}">
 
+              <td>{{e.nombre_giro}}</td>
+              <td>
+                <button class="btn-floating btn-medium waves-effect waves-light red" (click)="addGiro(e)">
+                  <i class="material-icons">add</i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <pagination-controls (pageChange)="p=$event"></pagination-controls>
       </div>
 
-      <!-- Negocio Modal Structure -->
-      <div id="modal6" class="modal">
-        <div class="modal-content">
+    </div>
 
-          <div class="col m4">
-            <p class="center-align">Empresas que han concretado contactos</p>
+    <!-- Negocio Modal Structure -->
+    <div id="modal6" class="modal">
+      <div class="modal-content">
 
-            <div class="row">
-              <table class="highlight centered">
-                <thead>
-                  <tr>
-                    <th>Fecha</th>
-                    <th>Empresa</th>
-                    <th></th>
+        <div class="col m4">
+          <p class="center-align">Empresas que han concretado contactos</p>
 
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let e of dataVistaHanConcretado">
-
-                    <td>{{e.fecha_consulta}}</td>
-                    <td>{{e.nombre_empresa}}</td>
-                    <td>
-                      <!--<button class="edit_data btn orange modal-trigger" id="{{e.id_empresa}}" data-toggle="modal" data-target="modal1">Contacto</button> -->
-                      <a class="waves-effect waves-light indigo darken-1 btn " (click)="setNegocio(e)">Registrar</a>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-
-
-
-
-
-      <!-- Negocio Concretado Modal Structure -->
-      <div id="modal7" class="modal">
-        <div class="modal-content">
           <div class="row">
-            <p class="center-align">Empresas con las que mas he concretado negocios</p>
-            <div id="pieChartContent2">
-              <canvas id="pieChart2"></canvas>
-            </div>
-            <div class="row">
-              <table class="highlight centered">
-                <thead>
-                  <tr>
-                    <th>Cantidad</th>
-                    <th>Empresa</th>
-                    <th>Fono</th>
-                    <th>Mail</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let e of dataNegocioConcretado">
-                    <td>{{e.total}}</td>
-                    <td>{{e.nombre_empresa}}</td>
-                    <td>{{e.fono_empresa}}</td>
-                    <td>{{e.mail_empresa}}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+            <table class="highlight centered">
+              <thead>
+                <tr>
+                  <th>Fecha</th>
+                  <th>Empresa</th>
+                  <th></th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let e of dataVistaHanConcretado">
+
+                  <td>{{e.fecha_consulta}}</td>
+                  <td>{{e.nombre_empresa}}</td>
+                  <td>
+                    <!--<button class="edit_data btn orange modal-trigger" id="{{e.id_empresa}}" data-toggle="modal" data-target="modal1">Contacto</button> -->
+                    <a class="waves-effect waves-light indigo darken-1 btn " (click)="setNegocio(e)">Registrar</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
-
       </div>
 
+    </div>
 
-      <!--CHILECOMPRA
+
+
+
+
+
+    <!-- Negocio Concretado Modal Structure -->
+    <div id="modal7" class="modal">
+      <div class="modal-content">
+        <div class="row">
+          <p class="center-align">Empresas con las que mas he concretado negocios</p>
+          <div id="pieChartContent2">
+            <canvas id="pieChart2"></canvas>
+          </div>
+          <div class="row">
+            <table class="highlight centered">
+              <thead>
+                <tr>
+                  <th>Cantidad</th>
+                  <th>Empresa</th>
+                  <th>Fono</th>
+                  <th>Mail</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let e of dataNegocioConcretado">
+                  <td>{{e.total}}</td>
+                  <td>{{e.nombre_empresa}}</td>
+                  <td>{{e.fono_empresa}}</td>
+                  <td>{{e.mail_empresa}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+    <!--CHILECOMPRA
 
       <div class="input-field">
         <input id="rut" type="text" class="validate" [(ngModel)]="localRut.rut">

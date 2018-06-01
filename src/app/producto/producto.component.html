@@ -1,6 +1,6 @@
 <nav>
   <div class="nav-wrapper  indigo darken-1">
-    <a href="#" class="brand-logo center">ASIVA</a>
+    <a class="brand-logo center">ASIVA</a>
     <a href="#" data-activates="mobile-demo" class="button-collapse">
       <i class="material-icons">menu</i>
     </a>
@@ -43,6 +43,7 @@
   <table class="highlight centered">
     <thead>
       <tr>
+        <th>Agregar</th>
         <th>Producto/Servicio</th>
         <th>Rubro 1</th>
         <th>Rubro 2</th>
@@ -52,6 +53,11 @@
 
     <tbody>
       <tr *ngFor="let e of dataProductosEmpresa  | async | productoFilter:searchText4 | paginate: {itemsPerPage:12, currentPage: p}  ">
+        <td>
+          <button class="btn-floating btn-medium waves-effect waves-light red" (click)="addProducto(e)">
+            <i class="material-icons">add</i>
+          </button>
+        </td>
         <td>{{e.nombre_producto}}</td>
         <td>{{e.rubro1}}</td>
         <td>{{e.rubro2}}</td>
@@ -63,15 +69,7 @@
     <div class="col s12 center-align">
       <pagination-controls (pageChange)="p=$event"></pagination-controls>
     </div>
-    <div class="row">
-      <div class="col">
-        <a (click)="irProducto()" class="waves-effect waves-light black btn">Agregar Seleccionados</a>
-      </div>
-      <div class="row"></div>
-      <div class="col">
-        <a (click)="irProducto()" class="waves-effect waves-light black btn">Borrar Seleccionados</a>
-      </div>
-    </div>
+    
   </div>
 
 </div>

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
 import { ServicesService } from '../services.service';
 import { Observable } from 'rxjs/Observable';
+import { productoEmpresa } from '../entidades/productoEmpresa';
 declare var $: any;
 
 @Component({
@@ -55,6 +56,30 @@ export class ProductoComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.dataProductosEmpresa);
+  }
+
+
+  
+  addProducto(producto: productoEmpresa) {
+    producto.id_empresa_producto = sessionStorage.getItem('id');
+    console.log(producto);
+    this.service.addProductoEmpresa(producto).subscribe(val => {
+      console.log(val);
+    }, error => {
+      console.log(error);
+     
+    });
+  }
+
+  removeProducto(producto: productoEmpresa) {
+    producto.id_empresa_producto = sessionStorage.getItem('id');
+    console.log(producto);
+    this.service.removeProductoEmpresa(producto).subscribe(val => {
+
+    }, error => {
+      console.log(error);
+      
+    });
   }
 
 }

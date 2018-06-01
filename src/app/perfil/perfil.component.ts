@@ -12,6 +12,7 @@ declare var $: any;
 import { ChangeDetectorRef } from '@angular/core';
 import Chart from 'chart.js';
 import { dataDetalleAdmin } from '../entidades/dataDetalleAdmin';
+import { productoEmpresa } from '../entidades/productoEmpresa';
 
 
 @Component({
@@ -35,7 +36,7 @@ export class PerfilComponent implements OnInit {
   public data_mail_empresa: any;
   public dataVistaHanConcretado: Observable<Array<any>>;
   public dataProductosEmpresa: Observable<Array<any>>;
-  public productoServicioEmpresa: any[] = [];
+  public productoServicioEmpresa: any;
   public ordenesDeCompraEmpresa: any[] = [];
   public host: any;
   localRut = {
@@ -178,6 +179,11 @@ export class PerfilComponent implements OnInit {
 
   ngOnInit() {
 
+    this.service.getProductosUnicos(sessionStorage.getItem('id')).subscribe(val => {
+      this.productoServicioEmpresa = val;
+      console.log('PRODUCTOS');
+      console.log(val);
+    });
 
     this.setDetalleNegocioConcretado();
     //this.setNegocioConcretado();
@@ -434,12 +440,42 @@ export class PerfilComponent implements OnInit {
     });
   }
 
+  removeProducto(producto: productoEmpresa) {
+    producto.id_empresa_producto = sessionStorage.getItem('id');
+    console.log('PRODUCTO A REMOVER')
+    console.log(producto);
+    this.service.removeProductoEmpresa(producto).subscribe(val => {
+      this.service.getProductosUnicos(sessionStorage.getItem('id')).subscribe(val => {        
+      this.ref.detectChanges();
+        this.productoServicioEmpresa = val;        
+        console.log('PRODUCTOS');
+        console.log(val);
+      })
+    }, error => {
+      this.service.getProductosUnicos(sessionStorage.getItem('id')).subscribe(val => {        
+      this.ref.detectChanges();
+        this.productoServicioEmpresa = val;        
+        console.log('PRODUCTOS');
+        console.log(val);
+      })
+      console.log(error);
+    });
+  }
+
+
+
   removeGiro(giro: giroUnicoEmpresa) {
     giro.empresa_id_empresa = sessionStorage.getItem('id');
     console.log(giro);
     this.service.removeGiroEmpresa(giro).subscribe(val => {
       console.log(val);
+      this.service.getGirosUnicosEmpresa(sessionStorage.getItem('id')).subscribe(val => {
 
+        this.ref.detectChanges();
+        this.girosUnicos = val;
+        console.log("GIROS UNICOS");
+        console.log(this.girosUnicos);
+      });
 
     }, error => {
       console.log(error);
